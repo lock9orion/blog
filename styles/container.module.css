@@ -1,0 +1,12 @@
+/* containerの幅などを指定するmodule */
+
+.default {
+  width: 92%;
+  max-width: 1153px;
+  margin: 0 auto;
+}
+
+.large {
+  composes: default;
+  max-width: 1280px;
+}

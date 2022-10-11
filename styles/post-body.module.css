@@ -1,0 +1,30 @@
+/* 記事本文の書式を整えるmodule */
+
+/* .stack下の任意の隣接要素(つまり一番最初の要素意外)にまとめて指定する
+フクロウセレクタ：*+* */
+.stack * + * {
+  /* 変数と初期値をここで定義する */
+  margin-top: var(--stack-space, 1.5em);
+}
+
+/* 見出しの上は大きめに空ける */
+.stack h2,
+.stack h3 {
+  --stack-space: 2em;
+}
+
+/* 見出しの下はちょっと詰める */
+.stack h2 + *,
+.stack h2 + * {
+  --stack-space: 0.8em;
+}
+
+.stack p {
+  line-height: 1.8em;
+}
+
+/* .stack下のリスト書式。使う可能性があるためリセット前の値に戻す(revert) */
+.stack ul {
+  padding: revert;
+  list-style: revert;
+}

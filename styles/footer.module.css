@@ -1,0 +1,7 @@
+.wrapper {
+  background-color: var(--gary-10);
+}
+
+.flexContainer {
+  composes: sideBySideCenter from "styles/utils.module.css";
+}

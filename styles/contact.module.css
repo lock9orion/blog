@@ -1,0 +1,13 @@
+/* コンタクト情報の書式module */
+.stack {
+  display: flex;
+  flex-direction: column;
+}
+
+.stack * + * {
+  margin-top: var(--stack-space, 1em);
+}
+
+.heading {
+  font-size: var(--body);
+}

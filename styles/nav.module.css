@@ -1,0 +1,26 @@
+.list {
+  display: flex;
+  gap: 2em;
+}
+
+/* ホバーしたときの色変化を設定するが、普通に設定するとスマホの場合「ホバー時の色が遷移後も設定されたままに」なる。これを避けるためメディアクエリの中の「メディア特性」hoverで場合分けを行いスタイルを設定する */
+
+/* hover可能な場合：実質PCなど */
+@media (hover: hover) {
+  .list a:hover {
+    color: var(--accent);
+  }
+}
+
+/* hover不可能な場合：実質スマホなど */
+@media (hover: none) {
+  .list a {
+    /* デフォルトのタップ時カラーをなしにしておく */
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  /* スマホにおいてhoverは「次の要素がタップされるまで」を意味するので、hoverっぽい動きはactiveで制御する */
+  .list a:active {
+    color: var(--accent);
+  }
+}

@@ -1,0 +1,38 @@
+/* レイアウト(並べ方のみ。幅などは別のmoduleで指定する)をまとめて指定するCSS Module */
+/* レイアウトの設定をしたい場合は、ここからcomosesで各Moduleへ引っ張る */
+/* ★変化する場合はモバイルファーストで記述する */
+
+/* パターン1：両端揃え 変化なし */
+.spaceBetween {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* パターン2:横並び→スマホ時縦並び(両端揃え)　★基本形★ */
+.sideBySide {
+  display: flex;
+  flex-direction: column;
+}
+
+@media (min-width: 768px) {
+  .sideBySide {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+}
+
+/* パターン3:横並び→スマホ時縦並び(中央揃え) */
+.sideBySideCenter {
+  composes: sideBySide;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+@media (min-width: 768px) {
+  .sideBySideCenter {
+    flex-direction: row;
+    text-align: left;
+  }
+}

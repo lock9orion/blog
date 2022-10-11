@@ -1,0 +1,28 @@
+.text {
+  padding: calc(var(--display) * 0.5) 0 calc(var(--display) * 0.7) 0;
+}
+
+.title {
+  font-size: var(--display);
+  font-weight: 900;
+  letter-spacing: 0.15em;
+}
+
+.subtitle {
+  font-size: var(--small-heading2);
+}
+
+.flexContainer {
+  composes: sideBySideCenter from "styles/utils.module.css";
+}
+
+/* 画像のサイズ */
+.image {
+  width: 100%;
+}
+
+@media (min-width: 768px) {
+  .image {
+    width: 50%;
+  }
+}
