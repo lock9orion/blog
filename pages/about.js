@@ -13,7 +13,7 @@ import {
 
 // メタ情報の読み込み
 import Meta from "components/meta";
-import Accordion from "components/Accordion";
+import Accordion from "components/accordion";
 
 // next/imageをインポート
 import Image from "next/image";
