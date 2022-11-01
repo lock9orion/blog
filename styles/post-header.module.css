@@ -1,0 +1,24 @@
+.stack {
+  padding: var(--space-sm) 0;
+}
+
+.stack > * + * {
+  margin-top: var(--stack-space, 1em);
+}
+
+.title {
+  --stack-spce: 0.5em;
+}
+
+.subtitle {
+  font-size: var(--small-heading2);
+  font-weight: 700;
+}
+
+.publish {
+  display: flex;
+  gap: 0.5em;
+  font-size: var(--small-heading3);
+  color: var(--gray-50);
+  align-items: flex-start;
+}

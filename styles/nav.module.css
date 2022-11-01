@@ -1,8 +1,3 @@
-.list {
-  display: flex;
-  gap: 2em;
-}
-
 /* ホバーしたときの色変化を設定するが、普通に設定するとスマホの場合「ホバー時の色が遷移後も設定されたままに」なる。これを避けるためメディアクエリの中の「メディア特性」hoverで場合分けを行いスタイルを設定する */
 
 /* hover可能な場合：実質PCなど */
@@ -22,5 +17,103 @@
   /* スマホにおいてhoverは「次の要素がタップされるまで」を意味するので、hoverっぽい動きはactiveで制御する */
   .list a:active {
     color: var(--accent);
+  }
+}
+
+/* PCでの表示設定*/
+@media (min-width: 768px) {
+  /* ハンバーガーメニューボタンの非表示 */
+  .btn {
+    display: none;
+  }
+  /* メニューを横並びに(つまりスマホでは縦並びに) */
+  .list {
+    display: flex;
+    gap: 2em;
+  }
+}
+
+/* モバイル版設定 */
+@media (max-width: 767px) {
+  .btn {
+    all: unset; /*すべてのプロパティを初期化*/
+    outline: revert; /*アウトラインの設定を元に戻す*/
+    -webkit-tap-highlight-color: transparent;
+    cursor: pointer;
+    width: 42px;
+    height: 42px;
+    position: relative;
+    z-index: 200; /*メニューに隠れないように重ね順を上に*/
+  }
+
+  .close .btn {
+    color: var(--gray-75);
+  }
+
+  .open .btn {
+    color: var(--white);
+  }
+
+  /*＝＝＝ボタンのバーの設定＝＝＝*/
+  .btn {
+    display: grid;
+    place-items: center; /*上下中央に子要素を寄せる*/
+  }
+
+  /* ボタンのバーの基本設定 */
+  .btn::before,
+  .btn::after,
+  .btn .bar {
+    grid-area: 1/1; /*行・列の開始位置をbefore,after,span本体で同じにすることで重ねて表示する→これを使ってばつマークも作るので重ねておく*/
+    content: "";
+    display: block;
+    width: 32px;
+    height: 1px;
+    background-color: currentColor; /*色はボタンの文字色に準拠する*/
+    transition: transform 0.4s;
+  }
+
+  /* メニューが閉じているとき(ハンバーガー) */
+  .close .btn::before {
+    transform: translateY(-8px); /*上に移動*/
+  }
+
+  .close .btn::after {
+    transform: translateY(8px); /*下に移動*/
+  }
+
+  /* メニューが開いているとき(バツ) */
+  .open .btn::before {
+    transform: rotate(45deg);
+  }
+
+  .open .btn::after {
+    transform: rotate(-45deg);
+  }
+
+  .open .btn .bar {
+    transform: scale(0); /*3本目は見えなくなるまで縮小*/
+  }
+
+  /* メニューが開いているときはオーバーレイでメニューを表示する */
+  .list {
+    position: fixed;
+    /* 辺の位置を指定する marginと挙動は同じ */
+    inset: 0 -100% 0 100%;
+    z-index: 100;
+    background: rgba(0, 0, 0, 0.8);
+    color: var(--white);
+    transition: transform 0.4s;
+  }
+
+  .open .list {
+    transform: translateX(-100%);
+  }
+
+  .list {
+    display: grid;
+    gap: 40px;
+    place-content: center;
+    text-align: center;
   }
 }
